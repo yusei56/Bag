@@ -287,6 +287,7 @@ MonoBehaviour:
   slotImage: {fileID: 5341551050892079849}
   slotNum: {fileID: 2851197067330180861}
   newMark: {fileID: 4719920102236805531}
+  slotType: 2
 --- !u!1 &6455249419970908416
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class InventoryManager_2 : MonoBehaviour
     public GameObject slotGrid;//显示道具的背包格子UI
     public Slot slotPrefab;//格子道具UI
     public TMP_Text itemDescription;//道具描述
+    public GameObject scrollView;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,10 +41,12 @@ public class InventoryManager_2 : MonoBehaviour
     {
         RefreshItem();
         instance.itemDescription.text = "";
+        //instance.scrollView.SetActive(false);
+
     }
     public static void UpdatedItemInfo(string itemInfo)
     {
-
+        //instance.scrollView.SetActive(true);
         instance.itemDescription.text = itemInfo;
     }
     public static void RefreshItem()

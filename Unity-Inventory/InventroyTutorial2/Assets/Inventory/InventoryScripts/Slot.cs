@@ -14,6 +14,7 @@ public class Slot : MonoBehaviour
     public Image slotImage;
     public TMP_Text slotNum;
     public TMP_Text newMark;
+    public int slotType;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,25 @@ public class Slot : MonoBehaviour
         //newMark.enabled = false;
         newMark.gameObject.SetActive(false);//点击道具"New"标记会消失
         slotItem.New = false;
+        if(slotType == 1)
         InventoryManager.UpdatedItemInfo(slotItem.itemInfo);
+        else if(slotType == 2)
+        InventoryManager_2.UpdatedItemInfo(slotItem.itemInfo);
+        else if(slotType==3)
+            InventoryManager_3.UpdatedItemInfo(slotItem.itemInfo);
+        else if(slotType==4)
+            InventoryManager_4.UpdatedItemInfo(slotItem.itemInfo);
+    }
+    private void OnDisable()
+    {
+        if (slotType == 1)
+            InventoryManager.UpdatedItemInfo("");
+        else if (slotType == 2)
+            InventoryManager_2.UpdatedItemInfo("");
+        else if( slotType == 3)
+        InventoryManager_3.UpdatedItemInfo("");
+        else if (slotType == 4)
+            InventoryManager_4.UpdatedItemInfo("");
     }
 }
 

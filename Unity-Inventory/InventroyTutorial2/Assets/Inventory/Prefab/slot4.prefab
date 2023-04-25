@@ -366,6 +366,7 @@ MonoBehaviour:
   slotImage: {fileID: 4268133634562420514}
   slotNum: {fileID: 1439399400512048461}
   newMark: {fileID: 2636740719489988756}
+  slotType: 4
 --- !u!114 &8341789377428103675
 MonoBehaviour:
   m_ObjectHideFlags: 0
