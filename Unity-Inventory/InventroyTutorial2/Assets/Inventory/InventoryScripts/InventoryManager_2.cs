@@ -8,10 +8,10 @@ public class InventoryManager_2 : MonoBehaviour
 {
     static InventoryManager_2 instance;
     public Inventory myBag;//背包的数据库
-    public GameObject slotGrid;//显示道具的背包格子UI
+    public GameObject gridGroup;//显示道具的背包格子UI
     public Slot slotPrefab;//格子道具UI
     public TMP_Text itemDescription;//道具描述
-    public GameObject scrollView;
+    int pages = 0;//背包当前所在页数
     // Start is called before the first frame update
     void Start()
     {
@@ -51,22 +51,23 @@ public class InventoryManager_2 : MonoBehaviour
     }
     public static void RefreshItem()
     {
-        for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
+        for (int i = 0; i < instance.gridGroup.transform.childCount; i++)
         {
-            if (instance.slotGrid.transform.childCount == 0)
+            for (int j = 0; j < instance.gridGroup.transform.GetChild(i).childCount; j++)
             {
-                break;
+                if (instance.gridGroup.transform.GetChild(i).childCount == 0)
+                {
+                    break;
+                }
+                Destroy(instance.gridGroup.transform.GetChild(i).transform.GetChild(j).gameObject);//初始化gridGroup
             }
-            Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
         }
-
-        for (int i = 0; i < 48; i++)
+        for (int i = 0; i < 72; i++)
         {
             if (instance.myBag.itemOrderList.ContainsKey(i))
             {
                 CreateNewItem(instance.myBag.itemOrderList[i]);
             }
-
         }
     }
 
@@ -76,8 +77,9 @@ public class InventoryManager_2 : MonoBehaviour
     /// <param name="bagNum"></param>  
     public static void CreateNewItem(Item item)
     {
-        Slot newItem = Instantiate(instance.slotPrefab, instance.slotGrid.transform.position, Quaternion.identity);
-        newItem.gameObject.transform.SetParent(instance.slotGrid.transform);
+        int i = instance.myBag.itemList.Count/24;
+        Slot newItem = Instantiate(instance.slotPrefab, instance.gridGroup.transform.GetChild(i).transform.position, Quaternion.identity);
+        newItem.gameObject.transform.SetParent(instance.gridGroup.transform.GetChild(i).transform);
         newItem.slotItem = item;
         newItem.slotImage.sprite = item.itemImage;
         newItem.slotNum.text = item.itemNum.ToString();
@@ -88,5 +90,29 @@ public class InventoryManager_2 : MonoBehaviour
             //item.New = false;
         }
         //newItem.transform.localScale = new Vector3(1, 1, 1);
+    }
+    public void RightOnClicked()
+    {
+        if (pages < 4)
+        { pages++; }
+        for (int i = 0; i < instance.gridGroup.transform.childCount; i++)
+        {
+            if (i == pages)
+                instance.gridGroup.transform.GetChild(i).gameObject.SetActive(true);
+            else
+                instance.gridGroup.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    public void LeftOnClicked()
+    {
+        if (pages > 0)
+        { pages--; }
+        for (int i = 0; i < instance.gridGroup.transform.childCount; i++)
+        {
+            if (i == pages)
+                instance.gridGroup.transform.GetChild(i).gameObject.SetActive(true);
+            else
+                instance.gridGroup.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 }
