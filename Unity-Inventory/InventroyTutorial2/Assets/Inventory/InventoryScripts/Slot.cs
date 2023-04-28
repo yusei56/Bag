@@ -41,9 +41,9 @@ public class Slot : MonoBehaviour
         else if(slotType == 2)
         InventoryManager_2.UpdatedItemInfo(slotItem.itemInfo);
         else if(slotType==3)
-            InventoryManager_3.UpdatedItemInfo(slotItem.itemInfo);
+        InventoryManager_3.UpdatedItemInfo(slotItem.itemInfo);
         else if(slotType==4)
-            InventoryManager_4.UpdatedItemInfo(slotItem.itemInfo);
+        InventoryManager_4.UpdatedItemInfo(slotItem.itemInfo);
     }
     private void OnDisable()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemOnWorld : MonoBehaviour
 {
     public Item thisItem;
+    public int itemHeld;
     public Inventory playerInventory;
     public Inventory playerInventory2;
     public Inventory playerInventory3;
@@ -41,15 +42,18 @@ public class ItemOnWorld : MonoBehaviour
 
     public void AddNewItem(Inventory bag)
     {
-        if (!bag.itemOrderList.ContainsKey(thisItem.id))//如果没持有相同类型的道具添加进背包
         {
-            bag.itemList.Add(thisItem);
-            bag.itemOrderList.Add(thisItem.id, thisItem);
-            //InventoryManager.CreateNewItem(thisItem);
-        }
-        else//如果持有相同类型的道具数量加1
-        {
-            thisItem.itemNum += 1;
+            if (!bag.itemOrderList.ContainsKey(thisItem.id))//如果没持有相同类型的道具添加进背包
+            {
+                thisItem.itemNum = itemHeld;
+                bag.itemList.Add(thisItem);
+                bag.itemOrderList.Add(thisItem.id, thisItem);
+                //InventoryManager.CreateNewItem(thisItem);
+            }
+            else//如果持有相同类型的道具数量加1
+            {
+                thisItem.itemNum += itemHeld;
+            }
         }
         //InventoryManager.RefreshItem();
     }

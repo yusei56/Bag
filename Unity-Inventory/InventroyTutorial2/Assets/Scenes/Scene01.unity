@@ -2277,6 +2277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: 91bc6ab7816076149ab668079f444146, type: 2}
+  itemHeld: 1
   playerInventory: {fileID: 11400000, guid: 60f62622fc13c7048b1be14fca72bbd9, type: 2}
   playerInventory2: {fileID: 11400000, guid: b7098ec3c115a684d8c3cab142542774, type: 2}
   playerInventory3: {fileID: 11400000, guid: 8878298312dd6054e889313afb83567b, type: 2}
@@ -3828,6 +3829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: c7752db075b27a34393d1db064c39f60, type: 2}
+  itemHeld: 2411
   playerInventory: {fileID: 11400000, guid: 60f62622fc13c7048b1be14fca72bbd9, type: 2}
   playerInventory2: {fileID: 11400000, guid: b7098ec3c115a684d8c3cab142542774, type: 2}
   playerInventory3: {fileID: 11400000, guid: 8878298312dd6054e889313afb83567b, type: 2}
@@ -10620,6 +10622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: c7752db075b27a34393d1db064c39f60, type: 2}
+  itemHeld: 1
   playerInventory: {fileID: 11400000, guid: 60f62622fc13c7048b1be14fca72bbd9, type: 2}
   playerInventory2: {fileID: 11400000, guid: b7098ec3c115a684d8c3cab142542774, type: 2}
   playerInventory3: {fileID: 11400000, guid: 8878298312dd6054e889313afb83567b, type: 2}
@@ -11698,6 +11701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: 047f6354fd668cb419f790cb1904f8d1, type: 2}
+  itemHeld: 120
   playerInventory: {fileID: 11400000, guid: 60f62622fc13c7048b1be14fca72bbd9, type: 2}
   playerInventory2: {fileID: 11400000, guid: b7098ec3c115a684d8c3cab142542774, type: 2}
   playerInventory3: {fileID: 11400000, guid: 8878298312dd6054e889313afb83567b, type: 2}
@@ -27017,6 +27021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: bc52c09fd12230a4bb087fd97c2996d0, type: 2}
+  itemHeld: 1
   playerInventory: {fileID: 11400000, guid: 60f62622fc13c7048b1be14fca72bbd9, type: 2}
   playerInventory2: {fileID: 11400000, guid: b7098ec3c115a684d8c3cab142542774, type: 2}
   playerInventory3: {fileID: 11400000, guid: 8878298312dd6054e889313afb83567b, type: 2}
@@ -27915,6 +27920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: c6c3775a772516147b471b9874ab4687, type: 2}
+  itemHeld: 1
   playerInventory: {fileID: 11400000, guid: 60f62622fc13c7048b1be14fca72bbd9, type: 2}
   playerInventory2: {fileID: 11400000, guid: b7098ec3c115a684d8c3cab142542774, type: 2}
   playerInventory3: {fileID: 11400000, guid: 8878298312dd6054e889313afb83567b, type: 2}

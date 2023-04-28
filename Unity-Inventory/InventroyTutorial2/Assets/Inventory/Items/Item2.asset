@@ -18,5 +18,5 @@ MonoBehaviour:
   itemName: Item2
   itemInfo: 00000
   itemImage: {fileID: 21300032, guid: 03dd1ef6fb163214c9e1ac0242dab3ba, type: 3}
-  itemNum: 1
+  itemNum: 0
   New: 1

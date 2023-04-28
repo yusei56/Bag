@@ -12,6 +12,7 @@ public class InventoryManager_2 : MonoBehaviour
     public Slot slotPrefab;//格子道具UI
     public TMP_Text itemDescription;//道具描述
     int pages = 0;//背包当前所在页数
+    int totalCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,7 @@ public class InventoryManager_2 : MonoBehaviour
     }
     public static void RefreshItem()
     {
+        instance.totalCount=0;
         for (int i = 0; i < instance.gridGroup.transform.childCount; i++)
         {
             for (int j = 0; j < instance.gridGroup.transform.GetChild(i).childCount; j++)
@@ -66,7 +68,22 @@ public class InventoryManager_2 : MonoBehaviour
         {
             if (instance.myBag.itemOrderList.ContainsKey(i))
             {
-                CreateNewItem(instance.myBag.itemOrderList[i]);
+                for (int j = instance.myBag.itemOrderList[i].itemNum; j > 0; j++)
+                {
+
+                    if (j > 99)
+                    { 
+                        CreateNewItem(instance.myBag.itemOrderList[i], 99);
+                        instance.totalCount++;
+                    }
+
+                    else
+                    { 
+                        CreateNewItem(instance.myBag.itemOrderList[i], j);
+                        instance.totalCount++;
+                    }
+                    j -= 99;
+                }
             }
         }
     }
@@ -75,14 +92,14 @@ public class InventoryManager_2 : MonoBehaviour
     /// 当道具数量变化，刷新选择的背包的道具显示
     /// </summary>
     /// <param name="bagNum"></param>  
-    public static void CreateNewItem(Item item)
+    public static void CreateNewItem(Item item,int Num)
     {
-        int i = instance.myBag.itemList.Count/24;
+        int i = instance.totalCount / 24;
         Slot newItem = Instantiate(instance.slotPrefab, instance.gridGroup.transform.GetChild(i).transform.position, Quaternion.identity);
         newItem.gameObject.transform.SetParent(instance.gridGroup.transform.GetChild(i).transform);
         newItem.slotItem = item;
         newItem.slotImage.sprite = item.itemImage;
-        newItem.slotNum.text = item.itemNum.ToString();
+        newItem.slotNum.text = Num.ToString();
         if (item.New)//第一次入手的道具会有"New"的标记
         {
             //newItem.newMark.enabled = true;
@@ -93,7 +110,7 @@ public class InventoryManager_2 : MonoBehaviour
     }
     public void RightOnClicked()
     {
-        if (pages < 4)
+        if (pages < 2)
         { pages++; }
         for (int i = 0; i < instance.gridGroup.transform.childCount; i++)
         {
