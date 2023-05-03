@@ -37,24 +37,26 @@ public class Slot : MonoBehaviour
         newMark.gameObject.SetActive(false);//点击道具"New"标记会消失
         slotItem.New = false;
         if(slotType == 1)
-        InventoryManager.UpdatedItemInfo(slotItem.itemInfo);
+        InventoryManager.UpdatedItemInfo(slotItem);
         else if(slotType == 2)
-        InventoryManager_2.UpdatedItemInfo(slotItem.itemInfo);
+        InventoryManager_2.UpdatedItemInfo(slotItem);
         else if(slotType==3)
-        InventoryManager_3.UpdatedItemInfo(slotItem.itemInfo);
+        InventoryManager_3.UpdatedItemInfo(slotItem);
         else if(slotType==4)
-        InventoryManager_4.UpdatedItemInfo(slotItem.itemInfo);
+        InventoryManager_4.UpdatedItemInfo(slotItem);
     }
     private void OnDisable()
     {
+        slotItem.itemName = "";
+        slotItem.itemInfo = "";
         if (slotType == 1)
-            InventoryManager.UpdatedItemInfo("");
+            InventoryManager.UpdatedItemInfo(slotItem);
         else if (slotType == 2)
-            InventoryManager_2.UpdatedItemInfo("");
+            InventoryManager_2.UpdatedItemInfo(slotItem);
         else if( slotType == 3)
-        InventoryManager_3.UpdatedItemInfo("");
+        InventoryManager_3.UpdatedItemInfo(slotItem);
         else if (slotType == 4)
-            InventoryManager_4.UpdatedItemInfo("");
+            InventoryManager_4.UpdatedItemInfo(slotItem);
     }
 }
 

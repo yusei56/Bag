@@ -14,6 +14,8 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text itemDescription;//道具描述
     int pages = 0;//背包当前所在页数
     int totalCount;//存储物品所需格子
+    public TMP_Text itemName;//物品名字
+    public GameObject fullAlarm;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,10 +47,11 @@ public class InventoryManager : MonoBehaviour
         instance.itemDescription.text = "";
         //instance.scrollView.SetActive(false);
     }
-    public static void UpdatedItemInfo(string itemInfo)
+    public static void UpdatedItemInfo( Item item)
     {
         //instance.scrollView.SetActive(true);
-        instance.itemDescription.text = itemInfo;
+        instance.itemDescription.text = item.itemInfo;
+        instance.itemName.text = item.itemName;
     }
     public static void RefreshItem()
     {
@@ -69,20 +72,28 @@ public class InventoryManager : MonoBehaviour
             if (instance.myBag.itemOrderList.ContainsKey(i))
             {
                 for (int j = instance.myBag.itemOrderList[i].itemNum; j > 0; j++)
+                {
+                    if (instance.totalCount >= 72)
                     {
-
-                    if (j > 99)
-                    {
-                        CreateNewItem(instance.myBag.itemOrderList[i], 99);
-                        instance.totalCount++;
+                        instance.fullAlarm.SetActive(true);
+                        break;
                     }
                     else
                     {
-                        CreateNewItem(instance.myBag.itemOrderList[i], j);
-                        instance.totalCount++;
-                    }
+                        instance.fullAlarm.SetActive(false);
+                        if (j > 99)
+                        {
+                            CreateNewItem(instance.myBag.itemOrderList[i], 99);
+                            instance.totalCount++;
+                        }
+                        else
+                        {
+                            CreateNewItem(instance.myBag.itemOrderList[i], j);
+                            instance.totalCount++;
+                        }
                         j -= 99;
-                    }
+                    } 
+                }
             }
         }
     }
@@ -93,18 +104,18 @@ public class InventoryManager : MonoBehaviour
     /// <param name="bagNum"></param>  
     public static void CreateNewItem(Item item,int Num)
     { 
-        int i = instance.totalCount / 24;
-        Slot newItem = Instantiate(instance.slotPrefab, instance.gridGroup.transform.GetChild(i).transform.position, Quaternion.identity);
-        newItem.gameObject.transform.SetParent(instance.gridGroup.transform.GetChild(i).transform);
-        newItem.slotItem = item;
-        newItem.slotImage.sprite = item.itemImage;
-        newItem.slotNum.text = Num.ToString();
-        if (item.New)//第一次入手的道具会有"New"的标记
-        {
-            //newItem.newMark.enabled = true;
-            newItem.newMark.gameObject.SetActive(true);
-            //item.New = false;
-        }
+            int i = instance.totalCount / 24;
+            Slot newItem = Instantiate(instance.slotPrefab, instance.gridGroup.transform.GetChild(i).transform.position, Quaternion.identity);
+            newItem.gameObject.transform.SetParent(instance.gridGroup.transform.GetChild(i).transform);
+            newItem.slotItem = item;
+            newItem.slotImage.sprite = item.itemImage;
+            newItem.slotNum.text = Num.ToString();
+            if (item.New)//第一次入手的道具会有"New"的标记
+            {
+                //newItem.newMark.enabled = true;
+                newItem.newMark.gameObject.SetActive(true);
+                //item.New = false;
+            }
         //newItem.transform.localScale = new Vector3(1, 1, 1);
     }
     public void RightOnClicked()

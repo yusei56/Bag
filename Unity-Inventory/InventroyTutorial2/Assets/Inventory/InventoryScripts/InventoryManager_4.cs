@@ -13,6 +13,8 @@ public class InventoryManager_4 : MonoBehaviour
     public TMP_Text itemDescription;//道具描述
     int pages = 0;//背包当前所在页数
     int totalCount;//存储物品所需格子
+    public TMP_Text itemName;//物品名字
+    public GameObject fullAlarm;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +46,11 @@ public class InventoryManager_4 : MonoBehaviour
         instance.itemDescription.text = "";
         //instance.scrollView.SetActive(false);
     }
-    public static void UpdatedItemInfo(string itemInfo)
+    public static void UpdatedItemInfo(Item item)
     {
         //instance.scrollView.SetActive(true);
-        instance.itemDescription.text = itemInfo;
+        instance.itemDescription.text = item.itemInfo;
+        instance.itemName.text = item.itemName;
     }
     public static void RefreshItem()
     {
@@ -69,19 +72,26 @@ public class InventoryManager_4 : MonoBehaviour
             {
                 for (int j = instance.myBag.itemOrderList[i].itemNum; j > 0; j++)
                 {
-
-                    if (j > 99)
-                    { 
-                        CreateNewItem(instance.myBag.itemOrderList[i], 99);
-                        instance.totalCount++;
+                    if (instance.totalCount >= 72)
+                    {
+                        instance.fullAlarm.SetActive(true);
+                        break;
                     }
-
                     else
-                    { 
-                        CreateNewItem(instance.myBag.itemOrderList[i], j);
-                        instance.totalCount++;
+                    {
+                        instance.fullAlarm.SetActive(false);
+                        if (j > 99)
+                        {
+                            CreateNewItem(instance.myBag.itemOrderList[i], 99);
+                            instance.totalCount++;
+                        }
+                        else
+                        {
+                            CreateNewItem(instance.myBag.itemOrderList[i], j);
+                            instance.totalCount++;
+                        }
+                        j -= 99;
                     }
-                    j -= 99;
                 }
             }
         }
