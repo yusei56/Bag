@@ -14,7 +14,8 @@ public class InventoryManager_2 : MonoBehaviour
     int pages = 0;//背包当前所在页数
     int totalCount;//存储物品所需格子
     public TMP_Text itemName;//物品名字
-    public GameObject fullAlarm;
+    public GameObject fullAlarm;//物品满了时的警告
+    public TMP_Text features;//物品属性
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class InventoryManager_2 : MonoBehaviour
     {
         RefreshItem();
         instance.itemDescription.text = "";
+        instance.itemName.text = "";
         //instance.scrollView.SetActive(false);
 
     }
@@ -52,6 +54,7 @@ public class InventoryManager_2 : MonoBehaviour
         //instance.scrollView.SetActive(true);
         instance.itemDescription.text = item.itemInfo;
         instance.itemName.text = item.itemName;
+        instance.features.text ="ID："+item.id+" "+"道具ID："+item.itemId+" "+ "道具类型："+item.itemType.ToString() + " "+"道具数量："+item.itemNum.ToString();
     }
     public static void RefreshItem()
     {

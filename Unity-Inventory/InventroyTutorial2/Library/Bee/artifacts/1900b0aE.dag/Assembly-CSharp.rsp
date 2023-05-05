@@ -364,6 +364,7 @@
 "Assets/Inventory/InventoryScripts/Item.cs"
 "Assets/Inventory/InventoryScripts/ItemOnWorld.cs"
 "Assets/Inventory/InventoryScripts/Slot.cs"
+"Assets/Inventory/InventoryScripts/SpecItemInfo.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"

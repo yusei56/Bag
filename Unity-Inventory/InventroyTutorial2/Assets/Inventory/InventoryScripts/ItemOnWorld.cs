@@ -10,6 +10,30 @@ public class ItemOnWorld : MonoBehaviour
     public Inventory playerInventory2;
     public Inventory playerInventory3;
     public Inventory playerInventory4;
+    public SpecItemInfo specItemInfo;//特殊物品的信息显示
+    private float timer;//计时
+    private bool timeStart;//是否开始计时
+    private void Start()
+    {
+        specItemInfo.itemImage = null;
+        specItemInfo.desciption.text = "";
+        timeStart = false;
+        timer = 0f;
+    }
+    private void Update()
+    {
+        if (timeStart)
+        {
+            timer += Time.deltaTime;
+            if(timer > 2)
+            {
+                specItemInfo.itemImage = null;
+                specItemInfo.desciption.text = "";
+                timeStart=false;
+                timer = 0f;
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -20,7 +44,9 @@ public class ItemOnWorld : MonoBehaviour
                 InventoryManager.RefreshItem();
             }
             else if (thisItem.itemType == 2)
-            {
+            {  
+                timeStart = true;
+                InfoDisplay(thisItem,specItemInfo);
                 AddNewItem(playerInventory2);
                 InventoryManager_2.RefreshItem();
             }
@@ -56,5 +82,10 @@ public class ItemOnWorld : MonoBehaviour
             }
         }
         //InventoryManager.RefreshItem();
+    }
+    private void InfoDisplay(Item item,SpecItemInfo specItemInfo)
+    {
+            specItemInfo.itemImage.sprite = item.itemImage;
+            specItemInfo.desciption.text = item.itemInfo;
     }
 }
