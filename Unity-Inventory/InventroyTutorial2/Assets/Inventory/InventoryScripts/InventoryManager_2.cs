@@ -46,6 +46,7 @@ public class InventoryManager_2 : MonoBehaviour
         RefreshItem();
         instance.itemDescription.text = "";
         instance.itemName.text = "";
+        instance.features.text = "";
         //instance.scrollView.SetActive(false);
 
     }

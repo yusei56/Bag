@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -36,14 +36,14 @@ public class Slot : MonoBehaviour
         //newMark.enabled = false;
         newMark.gameObject.SetActive(false);//点击道具"New"标记会消失
         slotItem.New = false;
-        if(slotType == 1)
-        InventoryManager.UpdatedItemInfo(slotItem);
-        else if(slotType == 2)
-        InventoryManager_2.UpdatedItemInfo(slotItem);
-        else if(slotType==3)
-        InventoryManager_3.UpdatedItemInfo(slotItem);
-        else if(slotType==4)
-        InventoryManager_4.UpdatedItemInfo(slotItem);
+        if (slotType == 1)
+            InventoryManager.UpdatedItemInfo(slotItem);
+        else if (slotType == 2)
+            InventoryManager_2.UpdatedItemInfo(slotItem);
+        else if (slotType == 3)
+            InventoryManager_3.UpdatedItemInfo(slotItem);
+        else if (slotType == 4)
+            InventoryManager_4.UpdatedItemInfo(slotItem);
     }
     private void OnDisable()
     {
@@ -51,10 +51,10 @@ public class Slot : MonoBehaviour
         slotItem.itemInfo = "";
         if (slotType == 1)
             InventoryManager.UpdatedItemInfo(slotItem);
-        else if (slotType == 2)
+        else if (slotType == 2)   
             InventoryManager_2.UpdatedItemInfo(slotItem);
-        else if( slotType == 3)
-        InventoryManager_3.UpdatedItemInfo(slotItem);
+        else if (slotType == 3)
+            InventoryManager_3.UpdatedItemInfo(slotItem);
         else if (slotType == 4)
             InventoryManager_4.UpdatedItemInfo(slotItem);
     }
